@@ -44,7 +44,7 @@ export default function BottomSheet({
         <>
           {/* Backdrop */}
           <motion.div
-            className="fixed inset-0 z-40 bg-black/40"
+          className="fixed inset-0 z-40 bg-black/30 backdrop-blur-[2px]"
             onClick={onClose}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -100,7 +100,8 @@ export default function BottomSheet({
               </div>
 
               {/* Content area */}
-              <div className="min-h-0 flex-1 overflow-auto px-4 pb-6">
+<div className="min-h-0 flex-1 overflow-auto px-4 pb-[calc(1.5rem+env(safe-area-inset-bottom))]">
+
                 {children}
               </div>
             </motion.div>

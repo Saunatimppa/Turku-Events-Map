@@ -195,7 +195,6 @@ useEffect(() => {
     });
 
     mapRef.current = map;
-    map.addControl(new mapboxgl.NavigationControl(), "top-right");
 
     // Local cache used for cluster leaves
     let eventsCache: EventRow[] = [];
@@ -406,16 +405,6 @@ useEffect(() => {
     setSelectedEventId(null);
   };
 
-  // iPhone-first: auto open peek after data loads (optional but feels good)
-  useEffect(() => {
-    if (!loading && allEvents.length > 0) {
-      setSheetOpen(true);
-      setSheetState("peek");
-      setSheetTitle("Upcoming events");
-      setSheetItems(filteredEvents);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loading]);
 
   // Keep sheet list in sync with filter when sheet is showing "Upcoming events"
   useEffect(() => {
@@ -481,11 +470,18 @@ useEffect(() => {
 
       {/* Floating add button */}
       <a
-        href="/add"
-        className="fixed bottom-24 right-4 z-50 rounded-full bg-black px-5 py-3 text-sm font-semibold text-white shadow-xl shadow-black/20 active:scale-[0.98] transition"
-      >
-        + Add event
-      </a>
+  href="/add"
+  className={`fixed right-4 z-50 rounded-full bg-black px-5 py-3 text-sm font-semibold text-white shadow-xl transition-all
+    ${
+      sheetOpen
+        ? "bottom-[calc(60vh+1rem)]"
+        : "bottom-24"
+    }
+  `}
+>
+  + Add event
+</a>
+
 
       {/* Bottom sheet */}
       <BottomSheet

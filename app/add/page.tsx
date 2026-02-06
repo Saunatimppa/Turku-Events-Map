@@ -88,7 +88,15 @@ export default function AddEventPage() {
         router.refresh();
     }
 
-    return (
+return (
+    <>
+        <button
+            onClick={() => router.back()}
+            className="mb-4 rounded-full px-3 py-1 text-sm font-medium hover:bg-black/5"
+        >
+            ← Back
+        </button>
+
         <div className="p-4 space-y-4">
             <h1 className="text-xl font-bold">Add event</h1>
 
@@ -133,5 +141,6 @@ export default function AddEventPage() {
                 Create event
             </button>
         </div>
-    );
+    </>
+);
 }
